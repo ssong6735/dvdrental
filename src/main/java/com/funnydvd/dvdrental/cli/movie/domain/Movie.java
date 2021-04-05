@@ -21,6 +21,7 @@ public class Movie {
         this.movieName = movieName;
         this.nation = nation;
         this.pubYear = pubYear;
+        this.charge = ChargePolicy.calculateDvdCharge(this.pubYear);
     }
 
     public int getSerialNumber() {
