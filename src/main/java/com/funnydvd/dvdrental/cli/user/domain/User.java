@@ -1,18 +1,25 @@
 package com.funnydvd.dvdrental.cli.user.domain;
 
+import com.funnydvd.dvdrental.cli.order.domain.Order;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static com.funnydvd.dvdrental.cli.user.domain.Grade.*;
 
 public class User {
 
-    private static int sequence; // 회원 순차번호
+    private static int sequence; //회원 순차번호
 
-    private int userNumber; // identifier 회원번호
-    private String userName; // 회원명
-    private String phoneNumber; // 전화번호
-    private int totalPaying; // 누적결제액
-    private Grade grade; // 회원등급
+    private int userNumber; //identifier 회원번호
+    private String userName; //회원명
+    private String phoneNumber; //전화번호
+    private int totalPaying; //누적결제액
+    private Grade grade; //회원등급
+    //현재 대여중인 목록 (영화시리얼넘버: K, 주문: V)
+    private final Map<Integer, Order> orderMap = new HashMap<>();
 
-    // 회원 가입시 처음 처리 생성자
     public User(String userName, String phoneNumber) {
         this.userNumber = ++sequence;
         this.userName = userName;
@@ -20,6 +27,22 @@ public class User {
         this.grade = BRONZE;
     }
 
+    //대여 주문 추가 기능
+    public void addOrder(Order order) {
+        orderMap.put(order.getMovie().getSerialNumber(), order);
+    }
+    //DVD반납시 대여 주문 제거
+    public Order removeOrder(int serialNumber) {
+        return orderMap.remove(serialNumber);
+    }
+    //영화 시리얼번호로 특정 대여 주문 정보 얻기
+    public Order getOrder(int serialNumber) {
+        return orderMap.get(serialNumber);
+    }
+    //회원의 전체 대여중인 주문 정보 얻기
+    public Map<Integer, Order> getOrderMap() {
+        return orderMap;
+    }
 
     public int getUserNumber() {
         return userNumber;
@@ -49,8 +72,9 @@ public class User {
         return totalPaying;
     }
 
-    public void setTotalPaying(int totalPaying) {
-        this.totalPaying = totalPaying;
+    public void setTotalPaying(int charge) {
+        this.totalPaying += charge;
+        GradePolicy.changeGrade(this);
     }
 
     public Grade getGrade() {
@@ -61,9 +85,6 @@ public class User {
         this.grade = grade;
     }
 
-
-
-    // toString
     @Override
     public String toString() {
         return  "## 회원번호: " + userNumber +
