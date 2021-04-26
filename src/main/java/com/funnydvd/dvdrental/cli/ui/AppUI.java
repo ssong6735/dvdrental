@@ -1,4 +1,4 @@
-package com.funnydvd.dvdrental.cli.ul;
+package com.funnydvd.dvdrental.cli.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

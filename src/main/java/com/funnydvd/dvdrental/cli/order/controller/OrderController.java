@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.funnydvd.dvdrental.cli.ul.AppUI.*;
+import static com.funnydvd.dvdrental.cli.ui.AppUI.*;
 
 public class OrderController implements AppController {
 

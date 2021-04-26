@@ -1,8 +1,6 @@
 package com.funnydvd.dvdrental.cli.main;
 
-import com.funnydvd.dvdrental.cli.ul.AppUI;
-
-import static com.funnydvd.dvdrental.cli.ul.AppUI.*;
+import static com.funnydvd.dvdrental.cli.ui.AppUI.*;
 
 public class AppMain {
 
