@@ -8,12 +8,13 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-
+// 라이브러리 의존성 관리 (라이브러리 다운로드 설정, 로딩 설정)
 dependencies {
+    // 테스트 라이브러리
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    //오라클 jdbc라이브러리 설정
-    compile fileTree(dir: '/src/main/webapp/WEB-INF/lib', include: ['*.jar'])
+    // 오라클 jdbc 라이브러리 설정
+    compile fileTree(dir: '/src/main/webapp/WEB-INF/lib', includes: ['*.jar'])
 }
 
 test {
