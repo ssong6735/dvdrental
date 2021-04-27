@@ -1,3 +1,4 @@
+// java 환경에서 스프링 사용할때 필요
 plugins {
     id 'java'
 }
@@ -5,16 +6,26 @@ plugins {
 group 'com.funnydvd'
 version '1.0-SNAPSHOT'
 
+// 3rd party libraries : 외부 라이브러리
 repositories {
     mavenCentral()
 }
+
 // 라이브러리 의존성 관리 (라이브러리 다운로드 설정, 로딩 설정)
 dependencies {
+
     // 테스트 라이브러리
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
     // 오라클 jdbc 라이브러리 설정
     compile fileTree(dir: '/src/main/webapp/WEB-INF/lib', includes: ['*.jar'])
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    // 스프링 코어 라이브러리
+    //implementation group: 'org.springframework', name: 'spring-core', version: '5.2.9.RELEASE'
+    implementation 'org.springframework:spring-core:5.2.9.RELEASE' // Gradle 최신 문법
+
 }
 
 test {

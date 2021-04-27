@@ -1,5 +1,6 @@
 package com.funnydvd.dvdrental.cli.movie.controller;
 
+import com.funnydvd.dvdrental.cli.config.DiContainer;
 import com.funnydvd.dvdrental.cli.movie.domain.SearchCondition;
 import com.funnydvd.dvdrental.cli.movie.repository.MemoryMovieRepository;
 import com.funnydvd.dvdrental.cli.movie.repository.MovieRepository;
@@ -10,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MovieControllerTest {
 
-    private MovieController controller = new MovieController();
+    DiContainer dc = new DiContainer();
+
+    private MovieController controller = dc.movieController();
     private MovieRepository repository = new MemoryMovieRepository();
 
     @Test
